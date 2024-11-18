@@ -30,16 +30,13 @@ fn lerp(start: f32, end: f32, factor: f32) -> f32 {
 }
 
 fn main() {
-    let seed_start = 4201339;
+    let seed_start = 4202339;
     //let seed_end = 4201340; // Slightly different seed
 
-
-
-
     //let mut factor = 0.0;
-    let delta = 0.01; // Adjust this value to control the speed of morphing
+    let delta = 0.005; // Adjust this value to control the speed of morphing
     //let size = (300 as i32, 100 as i32);
-    let size = 100;
+    let size =  200;
     //let vector: Vec<char> = vec![' ', '.', '-', '=', 'z', 'X', '#'];
     let vector: Vec<char> = vec![' ', ',', '*', 'x', 'X', '$', '@'];
 
@@ -51,8 +48,8 @@ fn main() {
 
     let config_end: NoiseConfig = NoiseConfig::new(
         2, // Octaves
-        0.005, // X-Frequency
-        0.005, // Y-Frequency
+        0.009, // X-Frequency
+        0.009, // Y-Frequency
         0.09, // Amplitude
         4.5, // Lacunarity
         0.5, // Gain
@@ -77,8 +74,8 @@ fn main() {
             seed_start // seed
             );
 
-        println!("starting next iteration");
-        thread::sleep(time::Duration::from_millis(1000));
+        // println!("starting next iteration");
+        thread::sleep(time::Duration::from_millis(100));
 
         // random config end
         while factor <= 1.0 { 
@@ -92,7 +89,7 @@ fn main() {
 
             factor += delta;
             //sleep for 1 second
-            thread::sleep(time::Duration::from_millis(100));
+            thread::sleep(time::Duration::from_millis(50));
         }
         configstart = configend;
     }
